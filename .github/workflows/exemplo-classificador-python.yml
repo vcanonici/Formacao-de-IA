@@ -1,0 +1,21 @@
+name: Exemplo - testes classificador Python
+
+on:
+  pull_request:
+    paths:
+      - 'Dia2/Exemplos/PR-Classificador-Simples/**'
+      - '.github/workflows/exemplo-classificador-python.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Testes unitarios com biblioteca padrao
+        run: python -m unittest discover -s Dia2/Exemplos/PR-Classificador-Simples -p 'test_*.py' -v
